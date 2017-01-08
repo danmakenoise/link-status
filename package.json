@@ -1,0 +1,26 @@
+{
+  "name": "link-status",
+  "version": "1.0.0",
+  "description": "A command line tool to show you all linked modules in your current Node.js project.",
+  "bin": {
+    "link-status": "bin/link-status.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/danmakenoise/link-status.git"
+  },
+  "keywords": [
+    "npm",
+    "link",
+    "linked",
+    "modules",
+    "command",
+    "line"
+  ],
+  "author": "Dan Phillips",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danmakenoise/link-status/issues"
+  },
+  "homepage": "https://github.com/danmakenoise/link-status#readme"
+}
