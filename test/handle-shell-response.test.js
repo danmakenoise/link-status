@@ -43,6 +43,7 @@ test('handleShellResponse()', function (t) {
   var validLine = '42697913        8 lrwxr-xr-x    1 dan              staff                  62 Jan  8 15:40 ./node_modules//miclint -> ../.nvm/versions/node/v6.9.1/lib/node_modules/miclint';
 
   var mixedOutput = invalidLine + '\n' + validLine;
+  var nullOutput = invalidLine + '\n' + invalidLine;
 
   var mockDefaultOpts = createMockOpts({});
   var mockErrorOpts = createMockOpts({ error: 'error' });
@@ -53,6 +54,13 @@ test('handleShellResponse()', function (t) {
     mockDefaultOpts.results.consoleLogArgs(),
     processResponse(mixedOutput, {}),
     'it console logs the formatted output with default opts'
+  );
+
+  handleShellResponse(nullOutput, mockDefaultOpts);
+  t.equal(
+    mockDefaultOpts.results.consoleLogArgs(),
+    'no links found',
+    'it console logs "no links found" when no valid links are present'
   );
 
   handleShellResponse(mixedOutput, mockErrorOpts);
