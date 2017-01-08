@@ -5,6 +5,9 @@
   "bin": {
     "link-status": "bin/link-status.js"
   },
+  "scripts": {
+    "lint": "semistandard | snazzy",
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/danmakenoise/link-status.git"
