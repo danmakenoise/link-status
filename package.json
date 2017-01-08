@@ -7,6 +7,8 @@
   },
   "scripts": {
     "lint": "semistandard | snazzy",
+    "test": "npm run lint && npm run test:unit | faucet",
+    "test:unit": "tape ./test/*.js"
   },
   "repository": {
     "type": "git",
