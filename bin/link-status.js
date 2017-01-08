@@ -1,31 +1,18 @@
 #! /usr/bin/env node
 'use strict';
+var handleShellResponse = require('../lib/handle-shell-response');
 var shellExec = require('child_process').exec;
 
-shellExec('find ./node_modules/ -maxdepth 2 -type l -ls', function (error, output) {
-  if (error) {
-    console.error(error);
-  }
+shellExec('find ./node_modules/ -maxdepth 2 -type l -ls', _handleShellResponse);
 
-  var lines = output.split('\n');
-  var linkedModuleLines = lines.filter(function (line) {
-    var isValidLink = line.indexOf('./node_modules//.bin') === -1;
-    var isValidLine = line.indexOf('./node_modules') >= 0;
-    return (isValidLink && isValidLine);
-  });
+function _handleShellResponse (error, response) {
+  var shouldDisplaySource = process.argv[2] === '-s';
+  var opts = {
+    error: error,
+    console: console,
+    shouldDisplaySource: shouldDisplaySource
+  };
 
-  var linkedModules = linkedModuleLines.map(function (line) {
-    var matcher;
+  handleShellResponse(response, opts);
+}
 
-    if (process.argv[2] === '-s') {
-      matcher = /\.\/node_modules\/\/(.+)/;
-    } else {
-      matcher = /\.\/node_modules\/\/(.+) ->/;
-    }
-
-    var moduleInfo = line.match(matcher);
-    return moduleInfo.length && moduleInfo[1];
-  });
-
-  console.log(linkedModules.join('\n'));
-});
