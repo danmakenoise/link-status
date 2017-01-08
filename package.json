@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/danmakenoise/link-status#readme",
   "devDependencies": {
+    "faucet": "0.0.1",
     "semistandard": "^9.2.1",
     "snazzy": "^5.0.0",
     "tape": "^4.6.3"
