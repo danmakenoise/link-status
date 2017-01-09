@@ -16,7 +16,8 @@ function _handleShellResponse (error, response) {
     error: error,
     console: console,
     shouldDisplaySource: shouldDisplaySource,
-    shouldPrettyPrint: shouldPrettyPrint
+    shouldPrettyPrint: shouldPrettyPrint,
+    getAndReplaceSource: _getAndReplaceSource
   };
 
   handleShellResponse(response, opts);
@@ -41,4 +42,35 @@ function displayHelp () {
   ].join('\n');
 
   console.log(helpMessage);
+}
+
+function _getAndReplaceSource (input, callback) {
+  var sourceMatcher = /-> \.\.\/(\.\.\/.+)/;
+  var privateSourceMatcher = /-> \.\.\/\.\.\/(\.\.\/.+)/;
+
+  var sourceMatch = input.match(sourceMatcher);
+  var privateSourceMatch = input.match(privateSourceMatcher);
+
+  var source = sourceMatch && sourceMatch.length && sourceMatch[1];
+  var privateSource = privateSourceMatch && privateSourceMatch.length && privateSourceMatch[1];
+
+  if (!source && !privateSource) {
+    return callback(input);
+  }
+
+  shellExec('readlink ' + source, function (error, response) {
+    if (error || !response) {
+      shellExec('readlink ' + privateSource, function (errorTwo, responseTwo) {
+        if (errorTwo || !responseTwo) {
+          return callback(input);
+        }
+
+        return callback(input.replace('../../' + privateSource, responseTwo.replace('\n', '')));
+      });
+
+      return;
+    }
+
+    return callback(input.replace('../' + source, response.replace('\n', '')));
+  });
 }

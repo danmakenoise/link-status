@@ -25,6 +25,9 @@ function createMockOpts (opts) {
       }
     },
     error: opts.error,
+    getAndReplaceSource: function (line, callback) {
+      callback(line);
+    },
     shouldDisplaySource: opts.shouldDisplaySource,
     shouldPrettyPrint: opts.shouldPrettyPrint
   };
@@ -58,6 +61,7 @@ test('handleShellResponse()', function (t) {
     'it console logs the formatted output with default opts'
   );
 
+  mockDefaultOpts = createMockOpts({});
   handleShellResponse(nullOutput, mockDefaultOpts);
   t.equal(
     mockDefaultOpts.results.consoleLogArgs(),
@@ -73,7 +77,6 @@ test('handleShellResponse()', function (t) {
   );
 
   handleShellResponse(mixedOutput, mockErrorOpts);
-  console.log(mockErrorOpts);
   t.equal(
     mockErrorOpts.results.consoleErrorArgs(),
     'error',
