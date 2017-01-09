@@ -1,4 +1,4 @@
-# link-status
+# link-status [![Build Status](https://travis-ci.org/danmakenoise/link-status.svg?branch=travis)](https://travis-ci.org/danmakenoise/link-status)
 A simple command line tool to display linked modules in the current directory. Supports private registries.
 
 ## Installation
