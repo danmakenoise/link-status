@@ -15,4 +15,3 @@ function _handleShellResponse (error, response) {
 
   handleShellResponse(response, opts);
 }
-
