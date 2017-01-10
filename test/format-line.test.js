@@ -13,7 +13,7 @@ test('formatLine() with shouldDisplaySource = false', function (t) {
 
   t.equal(
     formatLine(validLine),
-    'miclint',
+    '\n\tmiclint\n',
     'it returns the name of the linked module when the line is valid'
   );
 
@@ -32,7 +32,7 @@ test('formatLine() with shouldDisplaySource = true', function (t) {
 
   t.equal(
     formatLine(validLine, true),
-    'miclint\n  -> ../.nvm/versions/node/v6.9.1/lib/node_modules/miclint',
+    '\n\tmiclint\n\t▶ ../.nvm/versions/node/v6.9.1/lib/node_modules/miclint\n',
     'it returns the name of the linked module and its source when the line is valid'
   );
 
