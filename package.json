@@ -33,5 +33,8 @@
     "semistandard": "^9.2.1",
     "snazzy": "^5.0.0",
     "tape": "^4.6.3"
+  },
+  "dependencies": {
+    "colors": "^1.1.2"
   }
 }
