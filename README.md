@@ -26,9 +26,9 @@ link-status [-s]
 // link-status -s
 
 ✔ webpack
-  ▶ ../../../../../.nvm/versions/node/v6.9.1/lib/node_modules/webpack
+  ╚═══ ../../../../../.nvm/versions/node/v6.9.1/lib/node_modules/webpack
 
 ✔ miclint
-  ▶ ../../../../.nvm/versions/node/v6.9.1/lib/node_modules/miclint
+  ╚═══ ../../../../.nvm/versions/node/v6.9.1/lib/node_modules/miclint
 
 ```
