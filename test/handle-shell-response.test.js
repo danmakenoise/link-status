@@ -59,7 +59,7 @@ test('handleShellResponse()', function (t) {
   handleShellResponse(nullOutput, mockDefaultOpts);
   t.equal(
     mockDefaultOpts.results.consoleLogArgs(),
-    '\n NO LINKS FOUND \n',
+    '\n\t NO LINKS FOUND \n',
     'it console logs "no links found" when no valid links are present'
   );
 
