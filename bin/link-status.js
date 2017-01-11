@@ -11,7 +11,7 @@ function _handleShellResponse (error, response) {
   }
 
   var shouldDisplaySource = hasOption('-s') || hasOption('--source');
-  var shouldPrettyPrint = hasOption('-p') || hasOption('--pretty');
+  var shouldPrettyPrint = hasOption('-p') || hasOption('--prettify');
   var opts = {
     error: error,
     console: console,
@@ -36,7 +36,7 @@ function displayHelp () {
     'Options:',
     '  -h, --help\t\tShow this message',
     '  -s, --source\t\tShow link source',
-    '  -p, --prettyify\tPrettify the output',
+    '  -p, --prettify\tPrettify the output',
     ''
   ].join('\n');
 
