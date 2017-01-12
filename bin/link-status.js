@@ -6,13 +6,39 @@ var shellExec = require('child_process').exec;
 shellExec('find ./node_modules/ -maxdepth 2 -type l -ls', _handleShellResponse);
 
 function _handleShellResponse (error, response) {
-  var shouldDisplaySource = process.argv[2] === '-s';
+  if (hasOption('-h') || hasOption('--help')) {
+    return displayHelp();
+  }
+
+  var shouldDisplaySource = hasOption('-s') || hasOption('--source');
+  var shouldPrettyPrint = hasOption('-p') || hasOption('--prettify');
   var opts = {
     error: error,
     console: console,
-    shouldDisplaySource: shouldDisplaySource
+    shouldDisplaySource: shouldDisplaySource,
+    shouldPrettyPrint: shouldPrettyPrint
   };
 
   handleShellResponse(response, opts);
 }
 
+function hasOption (arg) {
+  return process.argv.indexOf(arg) > -1;
+}
+
+function displayHelp () {
+  var helpMessage = [
+    '',
+    'Link Status',
+    '',
+    'Usage: link-status [options]',
+    '',
+    'Options:',
+    '  -h, --help\t\tShow this message',
+    '  -s, --source\t\tShow link source',
+    '  -p, --prettify\tPrettify the output',
+    ''
+  ].join('\n');
+
+  console.log(helpMessage);
+}

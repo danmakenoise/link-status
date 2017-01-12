@@ -25,14 +25,15 @@ function createMockOpts (opts) {
       }
     },
     error: opts.error,
-    shouldDisplaySource: opts.shouldDisplaySource
+    shouldDisplaySource: opts.shouldDisplaySource,
+    shouldPrettyPrint: opts.shouldPrettyPrint
   };
 }
 
 function processResponse (response, opts) {
   var validLines = getValidLines(response);
   var formattedLines = validLines.map(function (line) {
-    return formatLine(line, opts.shouldDisplaySource);
+    return formatLine(line, opts);
   });
 
   return formattedLines.join('\n');
@@ -48,6 +49,7 @@ test('handleShellResponse()', function (t) {
   var mockDefaultOpts = createMockOpts({});
   var mockErrorOpts = createMockOpts({ error: 'error' });
   var mockSourceOpts = createMockOpts({ shouldDisplaySource: true });
+  var mockPrettyPrint = createMockOpts({ shouldPrettyPrint: true });
 
   handleShellResponse(mixedOutput, mockDefaultOpts);
   t.equal(
@@ -59,8 +61,15 @@ test('handleShellResponse()', function (t) {
   handleShellResponse(nullOutput, mockDefaultOpts);
   t.equal(
     mockDefaultOpts.results.consoleLogArgs(),
-    'no links found',
+    'NO LINKS FOUND',
     'it console logs "no links found" when no valid links are present'
+  );
+
+  handleShellResponse(nullOutput, mockPrettyPrint);
+  t.equal(
+    mockPrettyPrint.results.consoleLogArgs(),
+    '\n\t NO LINKS FOUND \n',
+    'it pretty prints "no links found" when no valid links are present'
   );
 
   handleShellResponse(mixedOutput, mockErrorOpts);
