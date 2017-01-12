@@ -45,8 +45,8 @@ function displayHelp () {
 }
 
 function _getAndReplaceSource (input, callback) {
-  var sourceMatcher = /-> \.\.\/(\.\.\/.+)/;
-  var privateSourceMatcher = /-> \.\.\/\.\.\/(\.\.\/.+)/;
+  var sourceMatcher = /╚═══ \.\.\/(\.\.\/.+)/;
+  var privateSourceMatcher = /╚═══ \.\.\/\.\.\/(\.\.\/.+)/;
 
   var sourceMatch = input.match(sourceMatcher);
   var privateSourceMatch = input.match(privateSourceMatcher);
