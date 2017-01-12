@@ -7,28 +7,33 @@ npm install -g link-status
 ```
 
 ## Usage
-You can run `link-status` by itself or with the `-s` flag to display the source directories of your linked modules.
 ```shell
-link-status [-s]
+link-status [options]
+```
+
+## Options
+```
+  -h, --help         Show help message
+  -v, --version      Show version number
+  -s, --source       Show link source
+  -p, --prettify     Prettify the output
 ```
 
 ## Output
 ```shell
 // link-status
 
-✔ webpack
-
-✔ miclint
+webpack
+miclint
 
 ```
 
 ```shell
 // link-status -s
 
-✔ webpack
+webpack
   ╚═══ ../../../../../.nvm/versions/node/v6.9.1/lib/node_modules/webpack
-
-✔ miclint
+miclint
   ╚═══ ../../../../.nvm/versions/node/v6.9.1/lib/node_modules/miclint
 
 ```
