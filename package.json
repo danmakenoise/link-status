@@ -1,6 +1,6 @@
 {
   "name": "link-status",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A command line tool to show you all linked modules in your current Node.js project.",
   "bin": {
     "link-status": "bin/link-status.js"
